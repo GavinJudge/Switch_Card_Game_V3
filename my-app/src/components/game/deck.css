@@ -1,0 +1,182 @@
+*, *::after, *::before { 
+    box-sizing: border-box;
+  }
+  
+  body {
+    margin-left: 10%;
+    margin-right: 10%;
+    display: center;
+    grid-template-columns: repeat(2, 4rem);
+    grid-template-rows: 7rem  7rem;
+    gap: .5rem;
+    justify-content: center;
+    padding-top: 1rem;
+    width: 75%;
+    height: 75%;
+  }
+  
+  .wrapper {
+    display: flex;
+    justify-content: center;  
+    align-items: center;
+    height: 100vh;
+  }
+  
+  .board {
+    width: 1200px;
+    height: 750px;
+    background-color: green;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  
+  .player-one {
+    width: 100%;
+    height: 250px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+  }
+  
+  .player-one .card {
+    margin-right: 10px;
+  }
+  
+  .top-card {
+    width: 100%;
+    height: 250px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .top-card .card {
+    margin-right: 10px;
+  }
+
+  .player-two {
+    width: 100%;
+    height: 250px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .player-two .card {
+    margin-right: 10px;
+  }
+
+  
+  .deal-btn {
+    position: absolute;
+    top: 35%;
+    left: 5%;
+    transform: translate(0, -50%);
+    padding: 20px 40px;
+    background-color: blue;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 20px;
+  }
+
+  .new-card-btn {
+    position: absolute;
+    top: 50%;
+    left: 5%;
+    transform: translate(0, -50%);
+    padding: 20px 40px;
+    background-color: blue;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 20px;
+  }
+  
+  .text {
+    grid-column: span 2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .card {
+    position: relative;  
+    height: 45%;
+    width: 9%;
+    background-color: white;
+    border: 1px solid black; 
+    border-radius: .5rem; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 3rem;
+  }
+
+  .blocked-card {
+    background-color: blue;
+    width: 5rem;
+    height: 7rem;
+    margin: 0.2rem;
+    border-radius: 5px;
+  }
+  
+  .turn-indicator-player-one {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    position: absolute;
+    top: 2%
+  }
+
+  .turn-indicator-player-two {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    position: absolute;
+    bottom:2%
+  }
+  
+  .action-message {
+    position: absolute;
+    left: 70%;
+    bottom: 40%;
+    width: 30%;
+    height: 15%;
+    background-color: #f8f8f8;
+    padding: 1rem;
+    margin: 1rem 0;
+    border: 1px solid #ccc;
+    text-align: center;
+    font-size: 1rem;
+  }
+  
+  
+  .card.red {
+    color: red;
+  }
+  
+  .card.black {
+    color: black;
+  }
+  
+  .card::before,
+  .card::after {
+    position: absolute;
+    content: attr(data-value);
+    font-size: 1rem;
+  }
+  
+  .card::before {
+    top: .5rem;
+    left: .5rem
+  }
+  
+  .card::after {
+    bottom: .5rem;
+    right: .5rem;
+    transform: rotate(180deg);
+  }
