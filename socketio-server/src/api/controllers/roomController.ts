@@ -13,12 +13,30 @@ import { User } from "../controllers/mainController"
 @SocketController()
 export class RoomController {
 
+  /*variables*/
+
+  //map to store the rooms deck
   private roomDecks: Map<string, Deck> = new Map();
-  
+
   // Map to store room and its players
   private roomPlayers: Map<string, User[]> = new Map();
 
-  
+
+  @OnMessage("get_open_rooms")
+  public getOpenRooms(
+    @SocketIO() io: Server,
+    @ConnectedSocket() socket: Socket
+  ) {
+    // Get all the room IDs where the room has exactly one player
+    const openRooms = Array.from(this.roomPlayers.entries())
+      .filter(([roomId, users]) => users.length === 1)
+      .map(([roomId, users]) => roomId);
+
+    // Emit the open rooms back to the client
+    socket.emit("open_rooms", openRooms);
+  }
+
+  //the function which happens on the join_game message event
   @OnMessage("join_game")
   public async joinGame(
 
@@ -71,14 +89,14 @@ export class RoomController {
       // Check if the room exists in the roomPlayers map
       if (!this.roomPlayers.has(message.roomId)) {
 
-      // If not, initialize an array with the user
-      this.roomPlayers.set(message.roomId, [user]);
+        // If not, initialize an array with the user
+        this.roomPlayers.set(message.roomId, [user]);
 
       } else {
 
-      // If it does, push the user into the array
-      this.roomPlayers.get(message.roomId).push(user);
-      
+        // If it does, push the user into the array
+        this.roomPlayers.get(message.roomId).push(user);
+
       }
 
       // Check if this is the first player to join the room

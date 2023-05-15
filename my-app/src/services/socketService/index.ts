@@ -9,6 +9,7 @@ class SocketService {
     token?: string | null
   ): Promise<Socket<DefaultEventsMap, DefaultEventsMap>> {
     return new Promise((rs, rj) => {
+      
       // Include the token in the connection request, if one was provided
       this.socket = io(url, { auth: { token } });
 

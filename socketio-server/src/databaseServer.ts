@@ -97,7 +97,6 @@ export const loginRoute = async (req: Request, res: Response) => {
 };
 
 
-
 //asynchronous function called when register button is pressed
 export const registerRoute = async (req: Request, res: Response) => {
 
